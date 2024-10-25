@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrameIO Auto Send Example</title>
+    <title>FrameIO Auto Send with Callback Parameters</title>
     <style>
         /* FrameIO dark theme color scheme */
         :root {
@@ -31,14 +31,22 @@
 </head>
 <body>
 
-    <img src="https://cdn-dkepej.nitrocdn.com/xHPizjaXJNONuYnLnfsGSUCsMnIlzOEq/assets/images/optimized/rev-ef469ea/blog.frame.io/wp-content/uploads/2022/10/frame-io-combination-mark-2048x1152.png" alt="FrameIO Logo" class="frameio-image">
+    <img src="https://your-image-url.com/frameio-logo.png" alt="FrameIO Logo" class="frameio-image">
 
     <script>
-        // Call the API as soon as the page loads
         window.onload = function() {
             const endpoint = "https://flow-wci3bgst1is5z.demo-01.qibb.com/webhook/box/metadataUpdated";
+            
+            // Get URL parameters (from Box callback) and log them
+            const urlParams = new URLSearchParams(window.location.search);
+            let queryString = "";
+            urlParams.forEach((value, key) => {
+                console.log(`${key}: ${value}`); // Log each parameter for debugging
+                queryString += `&${key}=${encodeURIComponent(value)}`;
+            });
 
-            fetch(endpoint, {
+            // Send GET request to the endpoint with appended Box parameters
+            fetch(`${endpoint}?${queryString.slice(1)}`, {
                 method: "GET"
             })
             .then(response => response.json())
