@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrameIO Button Example</title>
+    <title>FrameIO Auto Send Example</title>
     <style>
         /* FrameIO dark theme color scheme */
         :root {
             --frameio-background-color: #1f1f1f; /* dark background */
-            --frameio-button-color: #5cb85c; /* green button */
-            --frameio-button-hover: #4cae4c; /* darker green on hover */
             --frameio-text-color: #e5e5e5; /* light text */
         }
 
@@ -18,47 +16,26 @@
             font-family: Arial, sans-serif;
             color: var(--frameio-text-color);
             margin: 0;
-            padding: 20px;
-        }
-
-        .button-container {
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
 
-        .frameio-button {
-            background-color: var(--frameio-button-color);
-            color: var(--frameio-text-color);
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .frameio-button:hover {
-            background-color: var(--frameio-button-hover);
-        }
-
-        /* Spacing and alignment */
-        .frameio-button:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(92, 184, 92, 0.5);
+        .frameio-image {
+            max-width: 150px;
+            max-height: 150px;
         }
     </style>
 </head>
 <body>
 
-    <div class="button-container">
-        <button class="frameio-button" onclick="sendToFrameIO()">Send to FrameIO</button>
-    </div>
+    <img src="https://your-image-url.com/frameio-logo.png" alt="FrameIO Logo" class="frameio-image">
 
     <script>
-        function sendToFrameIO() {
+        // Call the API as soon as the page loads
+        window.onload = function() {
             const endpoint = "https://flow-wci3bgst1is5z.demo-01.qibb.com/webhook/box/metadataUpdated";
 
             fetch(endpoint, {
@@ -73,13 +50,16 @@
             .then(response => response.json())
             .then(data => {
                 console.log("Success:", data);
-                alert("Metadata sent to FrameIO!");
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("Failed to send data to FrameIO.");
             });
-        }
+
+            // Close the window after 3 seconds
+            setTimeout(() => {
+                window.close();
+            }, 3000);
+        };
     </script>
 
 </body>
