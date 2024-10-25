@@ -39,13 +39,7 @@
             const endpoint = "https://flow-wci3bgst1is5z.demo-01.qibb.com/webhook/box/metadataUpdated";
 
             fetch(endpoint, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    message: "Metadata updated"
-                })
+                method: "GET"
             })
             .then(response => response.json())
             .then(data => {
