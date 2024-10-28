@@ -9,6 +9,7 @@
         :root {
             --frameio-background-color: #1f1f1f; /* dark background */
             --frameio-text-color: #e5e5e5; /* light text */
+            --frameio-subtext-color: #a9a9a9; /* lighter subtext */
         }
 
         body {
@@ -21,17 +22,25 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
+            text-align: center;
         }
 
-        .frameio-image {
-            max-width: 150px;
-            max-height: 150px;
+        .main-text {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .sub-text {
+            color: var(--frameio-subtext-color);
+            font-size: 1em;
         }
     </style>
 </head>
 <body>
 
-    <img src="https://your-image-url.com/frameio-logo.png" alt="FrameIO Logo" class="frameio-image">
+    <div class="main-text">File metadata sent to QIBB flow.</div>
+    <div class="sub-text">You can close the window now.</div>
 
     <script>
         window.onload = function() {
@@ -56,11 +65,6 @@
             .catch(error => {
                 console.error("Error:", error);
             });
-
-            // Close the window after 3 seconds
-            setTimeout(() => {
-                window.close();
-            }, 3000);
         };
     </script>
 
